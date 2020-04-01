@@ -1,16 +1,17 @@
 import os
+from random import randrange
 from termcolor import colored
 
 # Define grid size
 WIDTH = 16
 HEIGHT = 8
 
-# Define colors
-SNAKE_1_COLOR = 'green'
-SNAKE_1_SYMBOL = '#'
-SNAKE_2_COLOR = 'red'
-SNAKE_2_SYMBOL = '#'
-BG_COLOR = 'yellow'
+# Define color, symbol
+BG_TILE = colored('O', 'yellow')
+
+# Define snake colors, symbols
+SNAKE_1_TILE = colored('#', 'green')
+SNAKE_2_TILE = colored('#', 'red')
 
 class SnakeGrid:
     def __init__(self, width, height):
@@ -18,7 +19,7 @@ class SnakeGrid:
     
     def initGrid(self, init_width, init_height):
         # Create a one-dimensional list row
-        grid_row = [colored('O', BG_COLOR) * init_width]
+        grid_row = [BG_TILE * init_width]
 
         # Repeat the row and append to the grid
         grid = []
@@ -44,19 +45,37 @@ class SnakeGrid:
                 x+=1
             y+=1
 
-    def changeGrid(self):
-        pass
+    def isValidAddress(self, x, y):
+        """
+        Checks if the square is taken already
+        """
+        if x < 0 or x >= WIDTH or y < 0 or y >= HEIGHT:
+            return False
+        if self.grid[y][x] != BG_TILE:
+            return False
+        return True
+        
 
-class Snake:
-    def __init__(self, symbol, length):
-        self.snake = self.initSnake(length)
+class SnakeGame:
+    def __init__(self, width, height, snake_len=4):
+        self.snake_grid = SnakeGrid(WIDTH, HEIGHT)
+        self.snake_grid.printGrid()
+        self.snakes = [self.initSnake()]
     
-    def initSnake(self, init_length):
-        pass
+    def initSnake(self, length):
+        """
+        Plots an initial snake
+        """
+        snake = []
+        
+        # Add points until length is matched
+        r = 0
+        while r < snake_len:
+            r+=1
+            # Incomplete here! CONTINUE HERE!
+
+        return snake
 
 
 
-sg = SnakeGrid(WIDTH, HEIGHT)
-sg.printGrid()
-
-print(colored('hello', 'red') + ' ' + colored('world', 'yellow'))
+sg = SnakeGame(WIDTH, HEIGHT)
