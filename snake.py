@@ -60,7 +60,7 @@ class SnakeGame:
     def __init__(self, width, height, snake_len=4):
         self.snake_grid = SnakeGrid(WIDTH, HEIGHT)
         self.snake_grid.printGrid()
-        self.snakes = [self.initSnake()]
+        self.snakes = [self.initSnake(snake_len)]
     
     def initSnake(self, length):
         """
@@ -70,9 +70,13 @@ class SnakeGame:
         
         # Add points until length is matched
         r = 0
-        while r < snake_len:
+        while r < length:
             r+=1
             # Incomplete here! CONTINUE HERE!
+            """
+            from random import randrange
+            print(randrange(10))
+            """
 
         return snake
 
